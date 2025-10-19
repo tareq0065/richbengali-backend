@@ -65,9 +65,9 @@ router.post(
         success_url,
         cancel_url,
         metadata: {
-          userId: req.user.id,       // used to assert ownership in /confirm
-          plan: plan || null,        // legacy fallback
-          price_id: price,           // primary link back to Plan/Price
+          userId: req.user.id, // used to assert ownership in /confirm
+          plan: plan || null, // legacy fallback
+          price_id: price, // primary link back to Plan/Price
         },
       });
 
@@ -119,7 +119,7 @@ router.post("/confirm", requireAuth, async (req, res, next) => {
       return res.status(409).json({ message: "Session not completed yet" });
     }
 
-    const userId = Number(sessionUserId ?? req.user.id);
+    const userId = String(sessionUserId ?? req.user.id);
 
     if (!isOneTime) {
       // ===== SUBSCRIPTION PATH =====
@@ -282,7 +282,7 @@ router.post("/webhook", express.raw({ type: "application/json" }), async (req, r
   try {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
-      const userId = Number(session?.metadata?.userId);
+      const userId = String(session?.metadata?.userId || "");
       let plan = session?.metadata?.plan || null;
       const priceIdMeta = session?.metadata?.price_id || null;
 
