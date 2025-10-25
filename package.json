@@ -15,6 +15,7 @@
     "seed:status": "node src/scripts/seed.js status"
   },
   "dependencies": {
+    "@aws-sdk/client-chime-sdk-meetings": "^3.917.0",
     "@aws-sdk/client-s3": "^3.665.0",
     "aws-sdk": "^2.1692.0",
     "axios": "^1.12.2",

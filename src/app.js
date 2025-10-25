@@ -15,6 +15,7 @@ import boostRoutes from "./routes/boost.js";
 import subscriptionRoutes from "./routes/subscription.js";
 import refsRouter from "./routes/refs.js";
 import otpRouter from "./routes/otp.js";
+import chimeRouter from "./routes/chime.js";
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use("/boost", boostRoutes);
 app.use("/stripe", stripeRoutes);
 app.use("/subscription", subscriptionRoutes);
 app.use("/refs", refsRouter);
+app.use("/chime", chimeRouter);
 
 app.use(errorHandler);
 
